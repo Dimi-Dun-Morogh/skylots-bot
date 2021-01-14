@@ -3,10 +3,9 @@ const chrono = require('chrono-node');
 const cheerio = require('cheerio');
 const { months } = require('../dictionary/index');
 
-const url =
-  'https://skylots.org/6583808446/Mobilnyy+telefon+Ergo+F242+akkumulyator+3000+mAch?t=4';
+const url = 'https://skylots.org/6583808446/Mobilnyy+telefon+Ergo+F242+akkumulyator+3000+mAch?t=4';
 
-const parseAuc = async (url: string): Promise<string> => {
+const parseAuc = async (url: string): Promise<string | null> => {
   try {
     const data = await fetch(url).then((response: any) => response.text());
     const $ = cheerio.load(data);
