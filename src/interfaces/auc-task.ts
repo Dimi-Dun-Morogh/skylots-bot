@@ -1,7 +1,13 @@
 import { Document } from 'mongoose';
 
-export default interface ITask extends Document {
+interface INewTask {
   date: number,
   chatId: number,
   url: string
 }
+export default interface ITask extends INewTask, Document {
+}
+
+export {
+  INewTask,
+};
