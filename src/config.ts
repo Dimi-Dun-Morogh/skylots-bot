@@ -11,6 +11,7 @@ const BOT = {
 const MONGO_OPTIONS = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  useFindAndModify: false,
 };
 
 const MONGO_USERNAME = process.env.MONGO_USERNAME || 'superuser';

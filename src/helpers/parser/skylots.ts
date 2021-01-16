@@ -1,3 +1,5 @@
+import { IAucInfo } from '../../interfaces/auc-task';
+
 const fetch = require('node-fetch');
 const chrono = require('chrono-node');
 const cheerio = require('cheerio');
@@ -22,4 +24,15 @@ const parseAucDate = async (url: string): Promise<Date | null> => {
   }
 };
 
-export { parseAucDate };
+const parseAucInfo = async (url:string) : Promise<IAucInfo> => {
+  const data = await fetch(url).then((response: any) => response.text());
+  const $ = cheerio.load(data);
+  const price :string = $('.lot_price ').text().trim();
+  const lotName :string = $('.lot_hc').first('h1').text().trim();
+  return {
+    price,
+    lotName,
+  };
+};
+
+export { parseAucDate, parseAucInfo };
