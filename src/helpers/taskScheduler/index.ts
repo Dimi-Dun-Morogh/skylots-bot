@@ -13,7 +13,6 @@ const compareDates = (aucDate: Date): boolean => {
   const timeNow = new Date().getTime();
   const hoursDifference = timeOfAuc - timeNow;
   const minDiff = hoursDifference / 60 / 1000; // in minutes if 10 or < 10 =>fire action
-  console.log(minDiff);
 
   return minDiff <= 10;
 };
@@ -37,6 +36,7 @@ const task = async (bot: Telegraf<TelegrafContext>) => {
           aucInfo.price
         }\n ${url}`;
         await bot.telegram.sendMessage(chatId, textToSend);
+        // что-то сделать с aucInfo.imageUrl
         logger.info(NAMESPACE, `message sent to chat id: ${chatId}`);
         // delete task  from db here
         await deleteAucTask(_id);

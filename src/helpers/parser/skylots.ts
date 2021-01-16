@@ -1,9 +1,18 @@
 import { IAucInfo } from '../../interfaces/auc-task';
 
+const Nightmare = require('nightmare');
 const fetch = require('node-fetch');
 const chrono = require('chrono-node');
 const cheerio = require('cheerio');
 const { months } = require('../dictionary/index');
+
+const parseWithNightMare = async (url:string):Promise<any> => {
+  const nightmare = Nightmare({ show: false });
+  const result = await nightmare.goto(url).wait('body').evaluate(() => document.querySelector('body')!.innerHTML)
+    .end()
+    .then((data: any) => data);
+  return result;
+};
 
 const dateFromString = (date: string): Date => {
   const [day, month, year, time] = date.split(' ');
@@ -25,13 +34,16 @@ const parseAucDate = async (url: string): Promise<Date | null> => {
 };
 
 const parseAucInfo = async (url:string) : Promise<IAucInfo> => {
-  const data = await fetch(url).then((response: any) => response.text());
+  const data = await parseWithNightMare(url);
   const $ = cheerio.load(data);
   const price :string = $('.lot_price ').text().trim();
   const lotName :string = $('.lot_hc').first('h1').text().trim();
+  const picUrl :string = $('.fotorama__img').first('img').attr('src');
+  
   return {
     price,
     lotName,
+    imageUrl: `https://skylots.org${picUrl}`,
   };
 };
 
