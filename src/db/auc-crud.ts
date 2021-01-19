@@ -41,9 +41,16 @@ const getAucTasksFor24Hours = async (): Promise<[any]> => {
   return tasks;
 };
 
+const getAucTasksByChatId = async (chatId: number): Promise<[any]> => {
+  const tasks = await AucTaskModel.find({ chatId }).exec();
+  logger.info(NAMESPACE, `fetcing tasks for chat: ${chatId}, tasks found ${tasks.length}`);
+  return tasks;
+};
+
 export {
   newAucTaskDB,
   deleteAucTask,
   getAllAucTasks,
   getAucTasksFor24Hours,
+  getAucTasksByChatId,
 };

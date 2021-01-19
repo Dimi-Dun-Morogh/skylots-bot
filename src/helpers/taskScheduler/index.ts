@@ -21,6 +21,8 @@ const task = async (bot: Telegraf<TelegrafContext>) => {
   try {
     // get tasks for current day here  ????
     const arrayOfTaks = Object.values(tasksStore.tasks);
+    logger.info(NAMESPACE, `tasks to go through: ${arrayOfTaks.length}`);
+    if (!arrayOfTaks.length) return;
     arrayOfTaks.forEach(async (taskItem) => {
       const {
         chatId, url, date, _id,
@@ -30,13 +32,14 @@ const task = async (bot: Telegraf<TelegrafContext>) => {
       if (isItTime) {
         const aucInfo = await parseAucInfo(url);
         logger.info(NAMESPACE, `it is time for task ${_id}`);
-        const textToSend = `аукцион ${
+        const textToSend = `аукцион: ${
           aucInfo.lotName
-        }\nзаканчивается ${aucDate.toLocaleString()}\nцена: ${
+        }\n<i>заканчивается</i>: ${aucDate.toLocaleString()}\nцена: <b>${
           aucInfo.price
-        }\n ${url}`;
-        await bot.telegram.sendMessage(chatId, textToSend);
+        }</b>\n ${url}`;
+        await bot.telegram.sendMessage(chatId, textToSend, { parse_mode: 'HTML' });
         // что-то сделать с aucInfo.imageUrl
+        // await bot.telegram.sendPhoto(chatId, 'https://skylots.org/images/images/n/84/0484f8b14ea14878f734bb8f3177e097.jpg', { caption: textToSend, parse_mode: 'HTML' });
         logger.info(NAMESPACE, `message sent to chat id: ${chatId}`);
         // delete task  from db here
         await deleteAucTask(_id);

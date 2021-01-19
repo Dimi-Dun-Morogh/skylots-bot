@@ -11,6 +11,18 @@ const months = {
   сен: 'sep',
   окт: 'oct',
   ноя: 'nov',
+  гру: 'dec',
+  січ: 'jan',
+  лют: 'feb',
+  бер: 'mar',
+  кві: 'apr',
+  тра: 'may',
+  чер: 'jun',
+  лип: 'jul',
+  сер: 'aug',
+  вер: 'sep',
+  жов: 'oct',
+  лис: 'nov',
 };
 
 module.exports = {

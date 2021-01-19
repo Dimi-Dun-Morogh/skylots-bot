@@ -16,5 +16,6 @@ module.exports = {
     "import/prefer-default-export": "off",
     "no-return-assign": "off",
     "no-underscore-dangle": "off",
+    "@typescript-eslint/naming-convention": "off",
   }
 };

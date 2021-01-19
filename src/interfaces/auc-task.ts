@@ -9,7 +9,11 @@ interface INewTask {
 interface IAucInfo {
   price: string
   lotName: string
-  imageUrl: string
+  imageUrl?: string
+}
+
+interface IFetchedTask extends INewTask {
+  _id: number,
 }
 export default interface ITask extends INewTask, Document {
 }
@@ -17,4 +21,5 @@ export default interface ITask extends INewTask, Document {
 export {
   INewTask,
   IAucInfo,
+  IFetchedTask,
 };

@@ -8,7 +8,7 @@ const NAMESPACE = 'cron-tasks.ts';
 /**
  * will run every 3 hours and fetch data from DB
  */
-const cronFetchTasks = cron.schedule('0 */1 * * *', async () => {
+const cronFetchTasks = cron.schedule('0 */3 * * *', async () => {
   await tasksStore.setTasks();
   logger.info(NAMESPACE, 'fetching tasks from DB');
 });
@@ -17,8 +17,8 @@ const cronFetchTasks = cron.schedule('0 */1 * * *', async () => {
  * will run every 1 minute and trigger task to run through fetched Auc tasks
  */
 const cronRunThourghTasks = cron.schedule('*/1 * * * *', () => {
-  task(bot);
   logger.info(NAMESPACE, 'running through tasks');
+  task(bot);
 });
 
 export {
