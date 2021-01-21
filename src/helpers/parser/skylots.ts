@@ -1,18 +1,9 @@
 import { IAucInfo } from '../../interfaces/auc-task';
 
-const Nightmare = require('nightmare');
 const fetch = require('node-fetch');
 const chrono = require('chrono-node');
 const cheerio = require('cheerio');
 const { months } = require('../dictionary/index');
-
-// const parseWithNightMare = async (url:string):Promise<any> => {
-//   const nightmare = Nightmare({ show: false });
-//   const result = await nightmare.goto(url).wait('body').evaluate(() => document.querySelector('body')!.innerHTML)
-//     .end()
-//     .then((data: any) => data);
-//   return result;
-// };
 
 const dateFromString = (date: string): Date => {
   const [day, month, year, time] = date.split(' ');

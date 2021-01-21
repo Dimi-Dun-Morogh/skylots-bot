@@ -17,5 +17,6 @@ module.exports = {
     "no-return-assign": "off",
     "no-underscore-dangle": "off",
     "@typescript-eslint/naming-convention": "off",
+    "no-await-in-loop": "off"
   }
 };

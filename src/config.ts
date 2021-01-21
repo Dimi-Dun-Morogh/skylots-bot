@@ -16,12 +16,14 @@ const MONGO_OPTIONS = {
 
 const MONGO_USERNAME = process.env.MONGO_USERNAME || 'superuser';
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD || 'supersecretpassword1';
+const MONGO_DB_NAME = process.env.MONGO_DB_NAME || 'dbname';
 
 const MONGO = {
   password: MONGO_PASSWORD,
   username: MONGO_USERNAME,
   options: MONGO_OPTIONS,
-  url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.osoyd.mongodb.net/skylotsTasks?retryWrites=true&w=majority`,
+  dbName: MONGO_DB_NAME,
+  url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.osoyd.mongodb.net/${MONGO_DB_NAME}?retryWrites=true&w=majority`,
 };
 
 export {

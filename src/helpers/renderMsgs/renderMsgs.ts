@@ -1,22 +1,21 @@
-import { IAucInfo, IFetchedTask } from '../../interfaces/auc-task';
+import { IAucInfo } from '../../interfaces/auc-task';
 import { parseAucInfo } from '../parser/skylots';
 
-const renderAllTasks = async (arrayOfTaks:[any]): Promise<string> => {
-  // переписать циклом
-  let res = '';
+const { textToEmoji } = require('../dictionary/index');
+
+const renderAllTasks = async (arrayOfTaks:[any]): Promise<string[]> => {
+  const res = [];
   // eslint-disable-next-line no-restricted-syntax
   for (const task of arrayOfTaks) {
-    // const task: IFetchedTask = arrayOfTaks[i];
     const { url, date, _id } = task;
     const aucDate = new Date(date);
-    // eslint-disable-next-line no-await-in-loop
     const aucInfo: IAucInfo = await parseAucInfo(url);
-    const resString = `аукцион: ${
+    const resString = `${textToEmoji('pin')}<b>АУКЦИОН</b>${textToEmoji('pin')}: ${
       aucInfo.lotName
-    }\n<i>заканчивается</i>: ${aucDate.toLocaleString()}\nцена: <b>${
+    }\n\n${textToEmoji('lightning')}<i>заканчивается</i>${textToEmoji('lightning')}: ${aucDate.toLocaleString()}\n\n${textToEmoji('saintsRow')}цена${textToEmoji('saintsRow')}: <b>${
       aucInfo.price
     }</b>\n ${url}\n id: ${_id}\n\n`;
-    res += resString;
+    res.push(resString);
   }
   return res;
 };

@@ -18,6 +18,7 @@ const createAucTask = async (ctx: TelegrafContext): Promise<any> => {
     logger.info(NAMESPACE, 'new task', newTask);
     // let's fetch new tasks and set them in store;
     tasksStore.setTasks();
+    ctx.reply(`напоминание для ${url} создано! бот пришлет сообщение за 10 минут до окончания аукциона`);
   } catch (error) {
     logger.info(NAMESPACE, 'error creating task', error);
   }
@@ -27,9 +28,10 @@ const allAucTasks = async (ctx: TelegrafContext) => {
   try {
     const tasks = await getAucTasksByChatId(ctx.chat?.id!);
     const text = await renderAllTasks(tasks);
-    ctx.replyWithHTML(text);
+    //  console.log(text);
+    text.forEach((task) => ctx.replyWithHTML(task));
   } catch (error) {
-    return Promise.reject(error);
+    logger.info(NAMESPACE, 'error allAucTasks', error);
   }
 };
 
@@ -40,7 +42,7 @@ const deleteTask = async (ctx: TelegrafContext) => {
     if (!id) return ctx.reply('отправьте id, пример комманды  - /delete 6005b8681f3d3031a0935c5f');
     await deleteAucTask(id);
     tasksStore.setTasks();
-    ctx.reply('success');
+    ctx.reply(`удаление успешно ${id}`);
   } catch (error) {
     return Promise.reject(error);
   }
