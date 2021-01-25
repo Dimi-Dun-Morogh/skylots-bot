@@ -1,7 +1,5 @@
 interface ICommands {
-  [key:string]: boolean
+  [key: string]: boolean;
 }
 
-export {
-  ICommands,
-};
+export { ICommands };

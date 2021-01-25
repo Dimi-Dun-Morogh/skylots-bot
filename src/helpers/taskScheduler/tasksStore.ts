@@ -3,7 +3,7 @@ import { ITasks } from '../../interfaces/taskScheduler';
 
 export default {
   tasks: {} as ITasks,
-  async setTasks() : Promise<void> {
+  async setTasks(): Promise<void> {
     const fetchedTasks = await getAucTasksFor24Hours();
     this.tasks = fetchedTasks.reduce((acc, item) => {
       acc[item._id] = item;

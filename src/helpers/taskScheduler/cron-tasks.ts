@@ -21,7 +21,4 @@ const cronRunThourghTasks = cron.schedule('*/1 * * * *', () => {
   task(bot);
 });
 
-export {
-  cronFetchTasks,
-  cronRunThourghTasks,
-};
+export { cronFetchTasks, cronRunThourghTasks };

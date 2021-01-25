@@ -4,8 +4,9 @@
   "description": "",
   "main": "./src/app.ts",
   "scripts": {
+    "build": "rm -rf build/ && prettier --write src/ && tsc",
     "dev": "npx nodemon ./src/app.ts",
-    "start": "node ./src/app.js"
+    "start": "node ./build/app.js"
   },
   "keywords": [],
   "author": "",

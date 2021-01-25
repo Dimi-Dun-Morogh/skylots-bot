@@ -29,12 +29,12 @@ const parseAucDate = async (url: string): Promise<Date | null> => {
   }
 };
 
-const parseAucInfo = async (url:string) : Promise<IAucInfo> => {
+const parseAucInfo = async (url: string): Promise<IAucInfo> => {
   // const data = await parseWithNightMare(url);
-  const data = await fetch(url).then((response:any) => response.text());
+  const data = await fetch(url).then((response: any) => response.text());
   const $ = cheerio.load(data);
-  const price :string = $('.lot_price ').text().trim();
-  const lotName :string = $('.lot_hc').first('h1').text().trim();
+  const price: string = $('.lot_price ').text().trim();
+  const lotName: string = $('.lot_hc').first('h1').text().trim();
   return {
     price,
     lotName,

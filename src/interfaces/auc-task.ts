@@ -1,25 +1,20 @@
 import { Document } from 'mongoose';
 
 interface INewTask {
-  date: number,
-  chatId: number,
-  url: string
+  date: number;
+  chatId: number;
+  url: string;
 }
 
 interface IAucInfo {
-  price: string
-  lotName: string
-  imageUrl?: string
+  price: string;
+  lotName: string;
+  imageUrl?: string;
 }
 
 interface IFetchedTask extends INewTask {
-  _id: number,
+  _id: number;
 }
-export default interface ITask extends INewTask, Document {
-}
+export default interface ITask extends INewTask, Document {}
 
-export {
-  INewTask,
-  IAucInfo,
-  IFetchedTask,
-};
+export { INewTask, IAucInfo, IFetchedTask };

@@ -24,6 +24,4 @@ bot.on('message', (ctx) => {
   createAucTask(ctx);
 });
 
-export {
-  bot,
-};
+export { bot };

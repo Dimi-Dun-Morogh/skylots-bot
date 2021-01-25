@@ -38,18 +38,15 @@ const allAucTasks = async (ctx: TelegrafContext) => {
 const deleteTask = async (ctx: TelegrafContext) => {
   try {
     const text = ctx.message?.text!;
-    const [,id] = text.split(' ');
+    const [, id] = text.split(' ');
     if (!id) return ctx.reply('отправьте id, пример комманды  - /delete 6005b8681f3d3031a0935c5f');
-    await deleteAucTask(id);
+    const res = await deleteAucTask(id);
+    if (!res) return ctx.reply('похоже вы неправильно указали id или он уже удален');
     tasksStore.setTasks();
     ctx.reply(`удаление успешно ${id}`);
   } catch (error) {
-    return Promise.reject(error);
+    logger.info(NAMESPACE, 'error deleting task', error.message);
   }
 };
 
-export {
-  createAucTask,
-  allAucTasks,
-  deleteTask,
-};
+export { createAucTask, allAucTasks, deleteTask };

@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const BOT_TOKEN : string = process.env.botToken || '';
+const BOT_TOKEN: string = process.env.botToken || '';
 
 const BOT = {
   token: BOT_TOKEN,
@@ -26,7 +26,4 @@ const MONGO = {
   url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.osoyd.mongodb.net/${MONGO_DB_NAME}?retryWrites=true&w=majority`,
 };
 
-export {
-  BOT,
-  MONGO,
-};
+export { BOT, MONGO };

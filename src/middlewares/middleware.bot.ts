@@ -4,8 +4,8 @@ import { ICommands } from '../interfaces/tg';
 
 const NAMESPACE = 'middlewares.bot.ts';
 
-const allowedCommands = (command: string) :boolean | undefined => {
-  const commands :ICommands = {
+const allowedCommands = (command: string): boolean | undefined => {
+  const commands: ICommands = {
     '/show_all': true,
     '/delete': true,
     '/help': true,
@@ -22,14 +22,10 @@ const isLink = () => (ctx: TelegrafContext, next: Function) => {
     return next();
   }
   logger.info(NAMESPACE, `invalid link, msg text = "${text}"`);
-  ctx.reply(
-    'пожалуйста дайте мне валидную ссылку на аукцион, пример ссылки - https://skylots.org/6583808446/Mobilnyy+telefon+Ergo+F242+akkumulyator+3000+mAch?t=4',
-  ).catch((error) => {
+  ctx.reply('пожалуйста дайте мне валидную ссылку на аукцион, пример ссылки - https://skylots.org/6583808446/Mobilnyy+telefon+Ergo+F242+akkumulyator+3000+mAch?t=4').catch((error) => {
     logger.info(NAMESPACE, error.message, error);
     return Promise.reject(error);
   });
 };
 
-export {
-  isLink,
-};
+export { isLink };

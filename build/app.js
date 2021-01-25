@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const logger_1 = require("./helpers/logger/logger");
+const bot_1 = require("./telegram/bot");
+const db_connect_1 = require("./db/db-connect");
+const taskScheduler_1 = require("./helpers/taskScheduler");
+const cron_tasks_1 = require("./helpers/taskScheduler/cron-tasks");
+const NAMESPACE = 'app.ts';
+bot_1.bot.launch().then(() => logger_1.logger.info(NAMESPACE, 'bot up and running'));
+db_connect_1.connectDb().then(() => logger_1.logger.info(NAMESPACE, 'connect to DB success'));
+taskScheduler_1.tasksStore.setTasks().then(() => taskScheduler_1.task(bot_1.bot));
+cron_tasks_1.cronFetchTasks.start();
+cron_tasks_1.cronRunThourghTasks.start();
