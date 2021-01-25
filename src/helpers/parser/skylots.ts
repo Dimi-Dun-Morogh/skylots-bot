@@ -1,9 +1,12 @@
 import { IAucInfo } from '../../interfaces/auc-task';
+import { logger } from '../logger/logger';
 
 const fetch = require('node-fetch');
 const chrono = require('chrono-node');
 const cheerio = require('cheerio');
 const { months } = require('../dictionary/index');
+
+const NAMESPACE = 'parser/skylots';
 
 const dateFromString = (date: string): Date => {
   const [day, month, year, time] = date.split(' ');
@@ -17,10 +20,12 @@ const parseAucDate = async (url: string): Promise<Date | null> => {
     const $ = cheerio.load(data);
     const date: string = $('.lotendtime').first('span').first('span').text(); // 2 час. (22 дек 2020 21:00:00) ..etc
     const regExp: RegExp = /\(([^)]+)\)/;
-    const parsed: any = regExp.exec(date);
+    const parsed: string[] | null = regExp.exec(date);
+
     return parsed !== null ? dateFromString(parsed[1]) : parsed; // Date or null
   } catch (error) {
-    return Promise.reject(error);
+    logger.info(NAMESPACE, error.message, error);
+    return null;
   }
 };
 

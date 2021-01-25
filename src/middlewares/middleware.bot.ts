@@ -8,6 +8,7 @@ const allowedCommands = (command: string) :boolean | undefined => {
   const commands :ICommands = {
     '/show_all': true,
     '/delete': true,
+    '/help': true,
   };
   return commands[command];
 };

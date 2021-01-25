@@ -54,7 +54,6 @@ const textToEmoji = (val, count = 1) => {
     for (let i = count; i > 0; i -= 1) {
       resEmoji += dictionary[val];
     }
-    console.log(resEmoji);
     return resEmoji;
   }
   if (val === '10') return '\ud83d\udd1f';
