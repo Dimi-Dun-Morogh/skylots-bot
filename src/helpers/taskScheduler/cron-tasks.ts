@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import { task, tasksStore } from '.';
 import { bot } from '../../telegram/bot';
 import { logger } from '../logger/logger';
+import { antiIdle } from './herokuIdle';
 
 const NAMESPACE = 'cron-tasks.ts';
 
@@ -21,4 +22,8 @@ const cronRunThourghTasks = cron.schedule('*/1 * * * *', () => {
   task(bot);
 });
 
-export { cronFetchTasks, cronRunThourghTasks };
+const cronAntiIdle = cron.schedule('*/20 * * * *', () => {
+  antiIdle();
+});
+
+export { cronFetchTasks, cronRunThourghTasks, cronAntiIdle };

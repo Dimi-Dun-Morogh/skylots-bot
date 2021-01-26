@@ -26,4 +26,12 @@ const MONGO = {
   url: `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.osoyd.mongodb.net/${MONGO_DB_NAME}?retryWrites=true&w=majority`,
 };
 
-export { BOT, MONGO };
+const SERVER_PORT = process.env.PORT || 1337;
+const SERVER_HOSTNAME = process.env.SERVER_HOSTNAME || 'localhost';
+
+const SERVER = {
+  hostname: SERVER_HOSTNAME,
+  port: SERVER_PORT,
+};
+
+export { BOT, MONGO, SERVER };
