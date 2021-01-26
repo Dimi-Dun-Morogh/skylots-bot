@@ -23,3 +23,5 @@ cronAntiIdle.start();
 
 const httpServer = http.createServer(router);
 httpServer.listen(SERVER.port, () => logger.info(NAMESPACE, `SERVER RUNNING ON ${SERVER.hostname}: ${SERVER.port}`));
+
+// console.log(new Date(1612639380000).toLocaleString());
