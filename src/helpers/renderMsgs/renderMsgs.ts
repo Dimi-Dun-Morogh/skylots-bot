@@ -9,7 +9,7 @@ const renderAllTasks = async (arrayOfTaks: [any]): Promise<string[]> => {
   for (const task of arrayOfTaks) {
     const { url, date, _id } = task;
     const aucDate = new Date(date);
-    console.log(date);
+    console.log(date.toLocaleString('ru-RU'));
 
     const aucInfo: IAucInfo = await parseAucInfo(url);
     const resString = `${textToEmoji('pin')}<b>АУКЦИОН</b>${textToEmoji('pin')}: ${aucInfo.lotName}\n\n${textToEmoji('lightning')}<i>заканчивается</i>${textToEmoji(
