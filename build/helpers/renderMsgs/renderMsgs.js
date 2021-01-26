@@ -19,7 +19,7 @@ const renderAllTasks = (arrayOfTaks) => __awaiter(void 0, void 0, void 0, functi
         const { url, date, _id } = task;
         const aucDate = new Date(date);
         const aucInfo = yield skylots_1.parseAucInfo(url);
-        const resString = `${textToEmoji('pin')}<b>АУКЦИОН</b>${textToEmoji('pin')}: ${aucInfo.lotName}\n\n${textToEmoji('lightning')}<i>заканчивается</i>${textToEmoji('lightning')}: ${aucDate.toLocaleString()}\n\n${textToEmoji('saintsRow')}цена${textToEmoji('saintsRow')}: <b>${aucInfo.price}</b>\n ${url}\n id: ${_id}\n\n`;
+        const resString = `${textToEmoji('pin')}<b>АУКЦИОН</b>${textToEmoji('pin')}: ${aucInfo.lotName}\n\n${textToEmoji('lightning')}<i>заканчивается</i>${textToEmoji('lightning')}: ${aucDate.toLocaleString('ru-RU')}\n\n${textToEmoji('saintsRow')}цена${textToEmoji('saintsRow')}: <b>${aucInfo.price}</b>\n ${url}\n id: ${_id}\n\n`;
         res.push(resString);
     }
     return res;

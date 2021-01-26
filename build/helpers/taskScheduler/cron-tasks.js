@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cronRunThourghTasks = exports.cronFetchTasks = void 0;
+exports.cronAntiIdle = exports.cronRunThourghTasks = exports.cronFetchTasks = void 0;
 const node_cron_1 = __importDefault(require("node-cron"));
 const _1 = require(".");
 const bot_1 = require("../../telegram/bot");
 const logger_1 = require("../logger/logger");
+const herokuIdle_1 = require("./herokuIdle");
 const NAMESPACE = 'cron-tasks.ts';
 /**
  * will run every 3 hours and fetch data from DB
@@ -34,3 +35,7 @@ const cronRunThourghTasks = node_cron_1.default.schedule('*/1 * * * *', () => {
     _1.task(bot_1.bot);
 });
 exports.cronRunThourghTasks = cronRunThourghTasks;
+const cronAntiIdle = node_cron_1.default.schedule('*/20 * * * *', () => {
+    herokuIdle_1.antiIdle();
+});
+exports.cronAntiIdle = cronAntiIdle;

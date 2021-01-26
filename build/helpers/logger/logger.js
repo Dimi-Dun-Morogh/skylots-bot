@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logger = void 0;
 const logger = {
-    getTimeStamp: () => new Date().toLocaleTimeString(),
+    getTimeStamp: () => new Date().toLocaleTimeString('ru-RU'),
     info(namespace, message, object) {
         if (object) {
             console.log(`[${this.getTimeStamp()}] [INFO] [${namespace}] [${message}]`, object);

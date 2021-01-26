@@ -12,7 +12,7 @@ const renderAllTasks = async (arrayOfTaks: [any]): Promise<string[]> => {
     const aucInfo: IAucInfo = await parseAucInfo(url);
     const resString = `${textToEmoji('pin')}<b>АУКЦИОН</b>${textToEmoji('pin')}: ${aucInfo.lotName}\n\n${textToEmoji('lightning')}<i>заканчивается</i>${textToEmoji(
       'lightning'
-    )}: ${aucDate.toLocaleString()}\n\n${textToEmoji('saintsRow')}цена${textToEmoji('saintsRow')}: <b>${aucInfo.price}</b>\n ${url}\n id: ${_id}\n\n`;
+    )}: ${aucDate.toLocaleString('ru-RU')}\n\n${textToEmoji('saintsRow')}цена${textToEmoji('saintsRow')}: <b>${aucInfo.price}</b>\n ${url}\n id: ${_id}\n\n`;
     res.push(resString);
   }
   return res;
